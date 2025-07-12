@@ -1,0 +1,67 @@
+
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #4b0082;
+    font-size: 1.5em;
+    margin: 1em 0;
+}
+
+h1 span {
+    font-weight: bold;
+}
+
+h2 {
+    color: #5e35b1;
+    margin-top: 1.5em;
+}
+
+h3 {
+    margin: 0.5em 0;
+}
+
+.malla-año {
+    margin: 1em auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.semestre {
+    border: 2px solid #ce93d8;
+    border-radius: 8px;
+    padding: 10px;
+    width: 45%;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
+
+.rosado {
+    background-color: #ffe6f0;
+}
+
+.morado {
+    background-color: #ede7f6;
+}
+
+.materia {
+    background: #e0dfff;
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.materia.tachada {
+    text-decoration: line-through;
+    opacity: 0.6;
+    background: #cccccc;
+}
