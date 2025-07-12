@@ -1,67 +1,71 @@
-
 body {
-    font-family: sans-serif;
-    text-align: center;
-    background: white;
-    margin: 0;
-    padding: 0;
+  font-family: sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+  color: #4a0072;
 }
 
 h1 {
-    color: #4b0082;
-    font-size: 1.5em;
-    margin: 1em 0;
-}
-
-h1 span {
-    font-weight: bold;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
 }
 
 h2 {
-    color: #5e35b1;
-    margin-top: 1.5em;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #7b1fa2;
+  text-align: left;
 }
 
 h3 {
-    margin: 0.5em 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #000;
 }
 
-.malla-año {
-    margin: 1em auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+#semestres {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .semestre {
-    border: 2px solid #ce93d8;
-    border-radius: 8px;
-    padding: 10px;
-    width: 45%;
-    box-sizing: border-box;
-    margin-bottom: 1em;
+  flex: 1 1 200px;
+  border: 2px solid #b388ff;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #f9e1ff;
 }
 
-.rosado {
-    background-color: #ffe6f0;
+.semestre.primero {
+  background-color: #ffe6f0;
 }
 
-.morado {
-    background-color: #ede7f6;
+.semestre.segundo {
+  background-color: #f3e5f5;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .materia {
-    background: #e0dfff;
-    margin: 5px 0;
-    padding: 5px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
+  background-color: white;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-left: 4px solid #7b1fa2;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .materia.tachada {
-    text-decoration: line-through;
-    opacity: 0.6;
-    background: #cccccc;
+  text-decoration: line-through;
+  color: gray;
+  background-color: #e0e0e0;
 }
