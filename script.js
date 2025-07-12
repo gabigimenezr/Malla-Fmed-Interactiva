@@ -1,53 +1,107 @@
-
-const materias = {
-    'Primero': {
-        '1º semestre': [
-            "Introducción a la Biología Celular y Molecular",
-            "Introducción a la Bioestadística",
-            "Salud y Humanidades y Bioética",
-            "Aprendizaje en Territorio 1"
-        ],
-        '2º semestre': [
-            "Biología Celular y Molecular",
-            "Aprendizaje en Territorio 2"
-        ]
-    }
-    // Puedes agregar más años y semestres aquí
-};
+const materias = [
+  {
+    nombre: "INTRODUCCIÓN A LA BIOLOGÍA CELULAR Y MOLECULAR",
+    anio: 1,
+    semestre: 1,
+    previas: []
+  },
+  {
+    nombre: "INTRODUCCIÓN A LA BIOESTADÍSTICA",
+    anio: 1,
+    semestre: 1,
+    previas: []
+  },
+  {
+    nombre: "SALUD Y HUMANIDADES Y BIOÉTICA",
+    anio: 1,
+    semestre: 1,
+    previas: []
+  },
+  {
+    nombre: "APRENDIZAJE EN TERRITORIO 1",
+    anio: 1,
+    semestre: 1,
+    previas: []
+  },
+  {
+    nombre: "BIOLOGÍA CELULAR Y MOLECULAR",
+    anio: 1,
+    semestre: 2,
+    previas: ["INTRODUCCIÓN A LA BIOLOGÍA CELULAR Y MOLECULAR"]
+  },
+  {
+    nombre: "APRENDIZAJE EN TERRITORIO 2",
+    anio: 1,
+    semestre: 2,
+    previas: ["APRENDIZAJE EN TERRITORIO 1"]
+  }
+];
 
 const mallaDiv = document.getElementById("malla");
 
-for (const año in materias) {
-    const añoDiv = document.createElement("div");
-    añoDiv.className = "malla-año";
+const estados = JSON.parse(localStorage.getItem("materiasAprobadas") || "{}");
 
-    const h2 = document.createElement("h2");
-    h2.textContent = año;
-    mallaDiv.appendChild(h2);
+function guardarEstado() {
+  localStorage.setItem("materiasAprobadas", JSON.stringify(estados));
+}
 
-    const semestres = materias[año];
-    let count = 0;
-    for (const semestre in semestres) {
-        const semDiv = document.createElement("div");
-        semDiv.className = "semestre " + (count % 2 === 0 ? "rosado" : "morado");
+function puedeDesbloquear(materia) {
+  return materia.previas.every(previa => estados[previa]);
+}
 
-        const h3 = document.createElement("h3");
-        h3.textContent = semestre;
-        semDiv.appendChild(h3);
+function render() {
+  mallaDiv.innerHTML = "";
 
-        semestres[semestre].forEach(nombre => {
-            const li = document.createElement("div");
-            li.className = "materia";
-            li.textContent = nombre;
-            li.onclick = () => {
-                li.classList.toggle("tachada");
-            };
-            semDiv.appendChild(li);
+  const años = [...new Set(materias.map(m => m.anio))].sort((a, b) => a - b);
+
+  años.forEach(anio => {
+    const contenedor = document.createElement("div");
+    contenedor.innerHTML = `<h2>Primero</h2>`;
+    contenedor.querySelector("h2").textContent = `${anio === 1 ? "Primero" : anio + "°"}`
+    mallaDiv.appendChild(contenedor);
+
+    const semestresDiv = document.createElement("div");
+    semestresDiv.id = "semestres";
+
+    [1, 2].forEach(sem => {
+      const bloque = document.createElement("div");
+      bloque.className = `semestre ${sem === 1 ? "primero" : "segundo"}`;
+      const titulo = document.createElement("h3");
+      titulo.textContent = `${sem}º semestre`;
+      bloque.appendChild(titulo);
+
+      const lista = document.createElement("ul");
+
+      materias
+        .filter(m => m.anio === anio && m.semestre === sem)
+        .forEach(materia => {
+          const item = document.createElement("li");
+          item.textContent = materia.nombre;
+          item.className = "materia";
+
+          const activa = estados[materia.nombre];
+          const habilitada = puedeDesbloquear(materia);
+
+          if (activa) item.classList.add("tachada");
+          if (!habilitada && materia.previas.length) item.style.opacity = 0.4;
+
+          item.onclick = () => {
+            if (habilitada) {
+              estados[materia.nombre] = !estados[materia.nombre];
+              guardarEstado();
+              render();
+            }
+          };
+
+          lista.appendChild(item);
         });
 
-        añoDiv.appendChild(semDiv);
-        count++;
-    }
+      bloque.appendChild(lista);
+      semestresDiv.appendChild(bloque);
+    });
 
-    mallaDiv.appendChild(añoDiv);
+    contenedor.appendChild(semestresDiv);
+  });
 }
+
+render();
