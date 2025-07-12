@@ -1,71 +1,66 @@
 body {
-  font-family: sans-serif;
-  background-color: white;
-  margin: 0;
-  padding: 2rem;
-  text-align: center;
-  color: #4a0072;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #4b0082;
+    text-align: center;
 }
 
 h1 {
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #5e0ca3;
 }
 
-h2 {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  color: #7b1fa2;
-  text-align: left;
+.anio {
+    text-align: left;
+    margin: 30px;
+    font-weight: bold;
+    font-size: 20px;
 }
 
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #000;
-}
-
-#semestres {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+.semestres {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .semestre {
-  flex: 1 1 200px;
-  border: 2px solid #b388ff;
-  border-radius: 10px;
-  padding: 1rem;
-  background-color: #f9e1ff;
+    border: 2px solid #c29ad9;
+    padding: 10px;
+    width: 200px;
+    min-height: 300px;
+    background-color: #f3defc;
+    border-radius: 10px;
 }
 
-.semestre.primero {
-  background-color: #ffe6f0;
+.semestre:nth-child(odd) {
+    background-color: #ffe6f0;
 }
 
-.semestre.segundo {
-  background-color: #f3e5f5;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.semestre h2 {
+    font-size: 18px;
+    text-align: center;
 }
 
 .materia {
-  background-color: white;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border-left: 4px solid #7b1fa2;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: white;
+    border-left: 5px solid #6a0dad;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .materia.tachada {
-  text-decoration: line-through;
-  color: gray;
-  background-color: #e0e0e0;
+    text-decoration: line-through;
+    color: gray;
+}
+
+.materia.bloqueada {
+    background-color: #ddd;
+    cursor: not-allowed;
+    color: #777;
 }
