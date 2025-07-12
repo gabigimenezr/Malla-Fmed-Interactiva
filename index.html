@@ -1,108 +1,224 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Malla Curricular Medicina UDELAR</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Malla Curricular - Medicina UDELAR</h1>
-    <div class="carousel">
-      <div class="year">
-        <h2>Primero</h2>
-        <div class="semester pink">
-          <h3>1º semestre</h3>
-          <button>Introducción a la Biología Celular y Molecular</button>
-          <button>Introducción a la Bioestadística</button>
-          <button>Salud y Humanidades y Bioética</button>
-          <button>Aprendizaje en Territorio 1</button>
-        </div>
-        <div class="semester purple">
-          <h3>2º semestre</h3>
-          <button data-previas="Introducción a la Biología Celular y Molecular">Biología Celular y Molecular</button>
-          <button data-previas="Aprendizaje en Territorio 1">Aprendizaje en Territorio 2</button>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Curricular - Medicina UDELAR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #800080;
+    }
+    .container {
+      display: flex;
+      overflow-x: auto;
+      padding: 20px;
+      gap: 20px;
+    }
+    .year {
+      min-width: 300px;
+      flex-shrink: 0;
+    }
+    .semestre {
+      background-color: #f9e1f1;
+      border: 2px solid #c89cf5;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 15px;
+    }
+    .semestre:nth-child(even) {
+      background-color: #e6d6fa;
+    }
+    .materia {
+      background-color: white;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px 0;
+      cursor: pointer;
+      font-weight: bold;
+      color: #800080;
+    }
+    .materia.tachada {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+    .materia.bloqueada {
+      background-color: #e0e0e0;
+      color: gray;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
 
-      <div class="year">
-        <h2>Segundo</h2>
-        <div class="semester pink">
-          <h3>3º semestre</h3>
-          <button data-previas="Salud y Humanidades y Bioética">Anatomía (CBCC2)</button>
-          <button data-previas="Biología Celular y Molecular">Histología y Biofísica (CBCC2)</button>
-        </div>
-        <div class="semester purple">
-          <h3>4º semestre</h3>
-          <button data-previas="Biología Celular y Molecular">Histología (Neuro y Cardio)</button>
-          <button data-previas="Biología Celular y Molecular">Neurociencias</button>
-          <button data-previas="Biología Celular y Molecular">Cardiovascular y Respiratorio</button>
-        </div>
-      </div>
+  <h1>Malla Curricular - Medicina UDELAR</h1>
 
-      <div class="year">
-        <h2>Tercero</h2>
-        <div class="semester pink">
-          <h3>5º semestre</h3>
-          <button data-previas="Biología Celular y Molecular, Anatomía (CBCC2)">Digestivo, Renal, Endocrino, Metabólico y Reproductor (CBCC5)</button>
-        </div>
-        <div class="semester purple">
-          <h3>6º semestre</h3>
-          <button data-previas="Biología Celular y Molecular">Hematología e Inmunobiología (BCC6)</button>
-          <button data-previas="Introducción a la Bioestadística, Digestivo, Renal, Endocrino, Metabólico y Reproductor (CBCC5)">Metodología Científica 1</button>
-        </div>
-      </div>
+  <div class="container" id="malla"></div>
 
-      <div class="year">
-        <h2>Cuarto</h2>
-        <div class="semester pink">
-          <h3>7º semestre</h3>
-          <button data-previas="Primer trienio">Medicina en el Primer Nivel de Atención</button>
-          <button data-previas="Primer trienio">Bases Científicas de la Patología</button>
-        </div>
-        <div class="semester purple">
-          <h3>8º semestre</h3>
-          <button data-previas="Primer trienio">Pediatría</button>
-          <button data-previas="Primer trienio">Ginecología y Neonatología</button>
-        </div>
-      </div>
+  <script>
+    const materias = [
+      {
+        anio: "Primero", semestres: [
+          {
+            numero: "1º semestre", materias: [
+              { id: "bio_intro", nombre: "Introducción a la Biología Celular y Molecular" },
+              { id: "bioest", nombre: "Introducción a la Bioestadística" },
+              { id: "bioetica", nombre: "Salud y Humanidades y Bioética" },
+              { id: "at1", nombre: "Aprendizaje en Territorio 1" }
+            ]
+          },
+          {
+            numero: "2º semestre", materias: [
+              { id: "bio", nombre: "Biología Celular y Molecular", previas: ["bio_intro"] },
+              { id: "at2", nombre: "Aprendizaje en Territorio 2", previas: ["at1"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Segundo", semestres: [
+          {
+            numero: "3º semestre", materias: [
+              { id: "anatomia", nombre: "Anatomía (CBCC2)", previas: ["bioetica"] },
+              { id: "histobiof", nombre: "Histología y Biofísica (CBCC2)", previas: ["bio"] }
+            ]
+          },
+          {
+            numero: "4º semestre", materias: [
+              { id: "histoneuro", nombre: "Histología (Neuro y Cardio)", previas: ["bio"] },
+              { id: "neuro", nombre: "Neurociencias", previas: ["bio"] },
+              { id: "cardioresp", nombre: "Cardiovascular y Respiratorio", previas: ["bio"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Tercero", semestres: [
+          {
+            numero: "5º semestre", materias: [
+              { id: "cbcc5", nombre: "Digestivo, Renal, Endocrino, Metabólico y Reproductor", previas: ["bio", "anatomia"] }
+            ]
+          },
+          {
+            numero: "6º semestre", materias: [
+              { id: "b6", nombre: "Hematología e Inmunobiología", previas: ["bio"] },
+              { id: "met1", nombre: "Metodología Científica 1", previas: ["bioest", "cbcc5"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Cuarto", semestres: [
+          {
+            numero: "7º semestre", materias: [
+              { id: "m4pna", nombre: "Medicina en el Primer Nivel de Atención", previas: ["cbcc5", "b6", "met1"] },
+              { id: "m4bcp", nombre: "Bases Científicas de la Patología", previas: ["cbcc5", "b6", "met1"] }
+            ]
+          },
+          {
+            numero: "8º semestre", materias: [
+              { id: "pediatria", nombre: "Pediatría", previas: ["cbcc5", "b6", "met1"] },
+              { id: "gineco", nombre: "Ginecología y Neonatología", previas: ["cbcc5", "b6", "met1"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Quinto", semestres: [
+          {
+            numero: "9º y 10º semestre", materias: [
+              { id: "clinica", nombre: "Clínica Médica", previas: ["m4pna", "m4bcp"] },
+              { id: "patomed", nombre: "Patología Médica y Terapéutica", previas: ["m4bcp"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Sexto", semestres: [
+          {
+            numero: "11º y 12º semestre", materias: [
+              { id: "clinicaq", nombre: "Clínica Quirúrgica", previas: ["m4pna", "m4bcp"] },
+              { id: "patoquir", nombre: "Patología Quirúrgica", previas: ["m4bcp"] },
+              { id: "mfc", nombre: "MFC – Salud Mental en Comunidad – Psicología Médica", previas: ["m4pna"] },
+              { id: "met2", nombre: "Metodología Científica 2", previas: ["m4pna", "m4bcp"] }
+            ]
+          }
+        ]
+      },
+      {
+        anio: "Séptimo", semestres: [
+          {
+            numero: "13º y 14º semestre", materias: [
+              { id: "internado", nombre: "Internado Obligatorio", previas: ["clinica", "patomed", "clinicaq", "patoquir", "mfc", "met2"] }
+            ]
+          }
+        ]
+      }
+    ];
 
-      <div class="year">
-        <h2>Quinto</h2>
-        <div class="semester pink">
-          <h3>9º semestre</h3>
-          <button data-previas="Primer trienio + M4BCP y M4PNA">Clínica Médica</button>
-          <button data-previas="Primer trienio + M4BCP">Patología Médica y Terapéutica</button>
-        </div>
-        <div class="semester purple">
-          <h3>10º semestre</h3>
-          <!-- Las mismas materias porque son anuales -->
-        </div>
-      </div>
+    const estadoMaterias = JSON.parse(localStorage.getItem("estadoMaterias") || "{}");
 
-      <div class="year">
-        <h2>Sexto</h2>
-        <div class="semester pink">
-          <h3>11º semestre</h3>
-          <button data-previas="Primer trienio + M4BCP y M4PNA">Clínica Quirúrgica</button>
-          <button data-previas="Primer trienio + M4BCP">Patología Quirúrgica</button>
-          <button data-previas="Primer trienio + M4PNA">MFC – Salud Mental en Comunidad – Psicología Médica</button>
-          <button data-previas="M4BCP, M4PNA, UC 17, 18, 19, 21 o 23">Metodología Científica 2</button>
-        </div>
-        <div class="semester purple">
-          <h3>12º semestre</h3>
-          <!-- Continuación de materias anuales -->
-        </div>
-      </div>
+    function crearMalla() {
+      const contenedor = document.getElementById("malla");
+      contenedor.innerHTML = "";
 
-      <div class="year">
-        <h2>Séptimo</h2>
-        <div class="semester pink">
-          <h3>13º y 14º semestres</h3>
-          <button data-previas="Todo aprobado">Internado Obligatorio</button>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+      materias.forEach(anio => {
+        const divAnio = document.createElement("div");
+        divAnio.className = "year";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = anio.anio;
+        divAnio.appendChild(h2);
+
+        anio.semestres.forEach(sem => {
+          const divSem = document.createElement("div");
+          divSem.className = "semestre";
+
+          const h3 = document.createElement("h3");
+          h3.textContent = sem.numero;
+          divSem.appendChild(h3);
+
+          sem.materias.forEach(materia => {
+            const divMat = document.createElement("div");
+            divMat.textContent = materia.nombre;
+            divMat.className = "materia";
+            divMat.dataset.id = materia.id;
+
+            if (estadoMaterias[materia.id]) {
+              divMat.classList.add("tachada");
+            }
+
+            // Verifica si cumple previas
+            if (materia.previas && materia.previas.some(p => !estadoMaterias[p])) {
+              divMat.classList.add("bloqueada");
+            }
+
+            divMat.addEventListener("click", () => {
+              if (divMat.classList.contains("bloqueada")) return;
+              divMat.classList.toggle("tachada");
+              estadoMaterias[materia.id] = divMat.classList.contains("tachada");
+              localStorage.setItem("estadoMaterias", JSON.stringify(estadoMaterias));
+              crearMalla(); // Volver a renderizar para actualizar dependencias
+            });
+
+            divSem.appendChild(divMat);
+          });
+
+          divAnio.appendChild(divSem);
+        });
+
+        contenedor.appendChild(divAnio);
+      });
+    }
+
+    crearMalla();
+  </script>
+
+</body>
 </html>
