@@ -1,14 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular - Medicina UDELAR</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>Malla Curricular - Medicina UDELAR</h1>
-  <div id="malla"></div>
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Malla Curricular Medicina UDELAR</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Malla Curricular - Medicina UDELAR</h1>
+    <div class="carousel">
+      <div class="year">
+        <h2>Primero</h2>
+        <div class="semester pink">
+          <h3>1º semestre</h3>
+          <button>Introducción a la Biología Celular y Molecular</button>
+          <button>Introducción a la Bioestadística</button>
+          <button>Salud y Humanidades y Bioética</button>
+          <button>Aprendizaje en Territorio 1</button>
+        </div>
+        <div class="semester purple">
+          <h3>2º semestre</h3>
+          <button data-previas="Introducción a la Biología Celular y Molecular">Biología Celular y Molecular</button>
+          <button data-previas="Aprendizaje en Territorio 1">Aprendizaje en Territorio 2</button>
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Segundo</h2>
+        <div class="semester pink">
+          <h3>3º semestre</h3>
+          <button data-previas="Salud y Humanidades y Bioética">Anatomía (CBCC2)</button>
+          <button data-previas="Biología Celular y Molecular">Histología y Biofísica (CBCC2)</button>
+        </div>
+        <div class="semester purple">
+          <h3>4º semestre</h3>
+          <button data-previas="Biología Celular y Molecular">Histología (Neuro y Cardio)</button>
+          <button data-previas="Biología Celular y Molecular">Neurociencias</button>
+          <button data-previas="Biología Celular y Molecular">Cardiovascular y Respiratorio</button>
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Tercero</h2>
+        <div class="semester pink">
+          <h3>5º semestre</h3>
+          <button data-previas="Biología Celular y Molecular, Anatomía (CBCC2)">Digestivo, Renal, Endocrino, Metabólico y Reproductor (CBCC5)</button>
+        </div>
+        <div class="semester purple">
+          <h3>6º semestre</h3>
+          <button data-previas="Biología Celular y Molecular">Hematología e Inmunobiología (BCC6)</button>
+          <button data-previas="Introducción a la Bioestadística, Digestivo, Renal, Endocrino, Metabólico y Reproductor (CBCC5)">Metodología Científica 1</button>
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Cuarto</h2>
+        <div class="semester pink">
+          <h3>7º semestre</h3>
+          <button data-previas="Primer trienio">Medicina en el Primer Nivel de Atención</button>
+          <button data-previas="Primer trienio">Bases Científicas de la Patología</button>
+        </div>
+        <div class="semester purple">
+          <h3>8º semestre</h3>
+          <button data-previas="Primer trienio">Pediatría</button>
+          <button data-previas="Primer trienio">Ginecología y Neonatología</button>
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Quinto</h2>
+        <div class="semester pink">
+          <h3>9º semestre</h3>
+          <button data-previas="Primer trienio + M4BCP y M4PNA">Clínica Médica</button>
+          <button data-previas="Primer trienio + M4BCP">Patología Médica y Terapéutica</button>
+        </div>
+        <div class="semester purple">
+          <h3>10º semestre</h3>
+          <!-- Las mismas materias porque son anuales -->
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Sexto</h2>
+        <div class="semester pink">
+          <h3>11º semestre</h3>
+          <button data-previas="Primer trienio + M4BCP y M4PNA">Clínica Quirúrgica</button>
+          <button data-previas="Primer trienio + M4BCP">Patología Quirúrgica</button>
+          <button data-previas="Primer trienio + M4PNA">MFC – Salud Mental en Comunidad – Psicología Médica</button>
+          <button data-previas="M4BCP, M4PNA, UC 17, 18, 19, 21 o 23">Metodología Científica 2</button>
+        </div>
+        <div class="semester purple">
+          <h3>12º semestre</h3>
+          <!-- Continuación de materias anuales -->
+        </div>
+      </div>
+
+      <div class="year">
+        <h2>Séptimo</h2>
+        <div class="semester pink">
+          <h3>13º y 14º semestres</h3>
+          <button data-previas="Todo aprobado">Internado Obligatorio</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
