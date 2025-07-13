@@ -1,92 +1,89 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Malla Curricular Interactiva</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+/* Fondo general */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfcfa; /* blanco cremosito */
+  margin: 0;
+  padding: 30px;
+  color: #444;
+}
 
-  <h1>Malla Curricular Interactiva</h1>
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #8a9a5b; /* verde musgo */
+  font-weight: 600;
+  font-size: 2.2em;
+}
 
-  <div class="semestre" id="semestre1">
-    <h2>Primer Semestre</h2>
-    <ul>
-      <li data-id="anatomiaI">
-        <span class="materia-text">Anatomía descriptiva y topográfica I</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="bioquimicaI">
-        <span class="materia-text">Bioquímica I</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="biologiaHistologiaTejidos">
-        <span class="materia-text">Biología e Histología de los Tejidos</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="historiaMedicina">
-        <span class="materia-text">Historia de la Medicina</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="medicinaComunidad1">
-        <span class="materia-text">Medicina de la Comunidad</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="inglesMedico">
-        <span class="materia-text">Inglés Médico</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="informaticaMedica">
-        <span class="materia-text">Informática Médica</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="socioantropologia">
-        <span class="materia-text">Socioantropología</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-    </ul>
-  </div>
+/* Cada cuadro de semestre */
+.semestre {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border: 2px solid #d7ebd3; /* verde menta muy clarito */
+}
 
-  <div class="semestre" id="semestre2">
-    <h2>Segundo Semestre</h2>
-    <ul>
-      <li data-id="anatomiaII">
-        <span class="materia-text">Anatomía descriptiva y topográfica II</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="histologiaSistemas">
-        <span class="materia-text">Histología de los Aparatos y Sistemas</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="moduloIntegracionI">
-        <span class="materia-text">Módulo de Integración I</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="biofisica">
-        <span class="materia-text">Biofísica</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="bioquimicaII">
-        <span class="materia-text">Bioquímica II</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="guarani">
-        <span class="materia-text">Guaraní</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="primerosAuxilios">
-        <span class="materia-text">Primeros Auxilios</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-      <li data-id="gestionInformacion">
-        <span class="materia-text">Gestión de la Información</span>
-        <input type="text" class="nota-input" placeholder="Agregar nota" />
-      </li>
-    </ul>
-  </div>
+/* Subtítulo del semestre */
+.semestre h2 {
+  margin-bottom: 20px;
+  color: #a48dc2; /* lila pastel */
+  font-weight: 600;
+  border-bottom: 1px solid #ececec;
+  padding-bottom: 5px;
+}
 
-  <script src="script.js"></script>
+/* Lista de materias */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-</body>
-</html>
+/* Estilo para cada materia */
+li {
+  background-color: #fff8f9; /* rosadito suave */
+  border: 1px solid #eed9e5;
+  border-left: 6px solid #d6c2f0; /* lila pastel */
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s, transform 0.1s;
+}
+
+li:hover {
+  background-color: #f0f8f4; /* verde clarito */
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+/* Materia tachada */
+li.terminada .materia-text {
+  text-decoration: line-through;
+  color: #a0bd9e; /* verde musgo clarito */
+  font-weight: bold;
+}
+
+/* Input de notas */
+.nota-input {
+  width: 80px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #c4c4c4;
+  font-size: 14px;
+  background-color: #fcf1f8; /* rosado pastel */
+  color: #444;
+  transition: border-color 0.3s;
+}
+
+.nota-input:focus {
+  border-color: #c7a4df; /* lila */
+  outline: none;
+}
