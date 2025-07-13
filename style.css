@@ -1,64 +1,66 @@
 body {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f7f7f7;
 }
 
 h1 {
-  color: purple;
-  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 20px;
+.semestre {
+  background: white;
+  border-radius: 10px;
   padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.year {
-  flex: 0 0 auto;
-  width: 300px;
-  scroll-snap-align: start;
-  border-radius: 10px;
+.semestre h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
 }
 
-h2 {
-  color: purple;
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
-.semester {
-  margin: 10px;
-  border: 2px solid #c19ff0;
-  padding: 10px;
-  border-radius: 10px;
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
-.pink {
-  background-color: #ffe4f1;
+li:hover {
+  background: #ecf0f1;
 }
 
-.purple {
-  background-color: #f3d9ff;
-}
-
-button {
-  display: block;
-  margin: 8px auto;
-  padding: 10px;
-  width: 90%;
-  background-color: white;
-  border: none;
-  border-left: 5px solid purple;
-  border-radius: 10px;
-  font-weight: bold;
-  color: purple;
-}
-
-button.disabled {
-  background-color: lightgray;
-  color: gray;
+li.terminada .materia-text {
   text-decoration: line-through;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.nota-input {
+  width: 70px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.nota-input:focus {
+  border-color: #2980b9;
+  outline: none;
 }
