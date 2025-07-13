@@ -1,37 +1,31 @@
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.classList.toggle("disabled");
-    actualizarMaterias();
+document.addEventListener("DOMContentLoaded", () => {
+  const materias = document.querySelectorAll("li");
+
+  materias.forEach((li) => {
+    const id = li.getAttribute("data-id");
+    const notaInput = li.querySelector(".nota-input");
+
+    // Cargar estado guardado
+    const estadoGuardado = localStorage.getItem(`materia-estado-${id}`);
+    const notaGuardada = localStorage.getItem(`materia-nota-${id}`);
+
+    if (estadoGuardado === "terminada") {
+      li.classList.add("terminada");
+    }
+    if (notaGuardada) {
+      notaInput.value = notaGuardada;
+    }
+
+    // Toggle tachado al hacer click en la materia (no en la nota)
+    li.querySelector(".materia-text").addEventListener("click", () => {
+      li.classList.toggle("terminada");
+      const estado = li.classList.contains("terminada") ? "terminada" : "pendiente";
+      localStorage.setItem(`materia-estado-${id}`, estado);
+    });
+
+    // Guardar nota al cambiar
+    notaInput.addEventListener("input", () => {
+      localStorage.setItem(`materia-nota-${id}`, notaInput.value);
+    });
   });
 });
-
-function actualizarMaterias() {
-  const aprobadas = new Set();
-
-  // Detecta materias tachadas (es decir, aprobadas)
-  document.querySelectorAll("button:not(.disabled)").forEach(btn => {
-    aprobadas.add(btn.textContent.trim());
-  });
-
-  document.querySelectorAll("button").forEach(btn => {
-    const previas = btn.dataset.previas;
-    if (!previas) {
-      btn.disabled = false;
-      return;
-    }
-
-    const listaPrevias = previas.split(",").map(p => p.trim());
-    const cumplePrevias = listaPrevias.every(p => aprobadas.has(p));
-
-    if (btn.classList.contains("disabled")) {
-      // Aunque esté tachado, lo dejo editable
-      btn.disabled = false;
-    } else {
-      // Si NO está tachado, bloqueo si no cumple las previas
-      btn.disabled = !cumplePrevias;
-    }
-  });
-}
-
-// Inicializar bloqueo según previas
-actualizarMaterias();
