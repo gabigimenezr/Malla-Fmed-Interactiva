@@ -1,66 +1,92 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #f7f7f7;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malla Curricular Interactiva</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-h1 {
-  text-align: center;
-  margin-bottom: 40px;
-}
+  <h1>Malla Curricular Interactiva</h1>
 
-.semestre {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  <div class="semestre" id="semestre1">
+    <h2>Primer Semestre</h2>
+    <ul>
+      <li data-id="anatomiaI">
+        <span class="materia-text">Anatomía descriptiva y topográfica I</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="bioquimicaI">
+        <span class="materia-text">Bioquímica I</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="biologiaHistologiaTejidos">
+        <span class="materia-text">Biología e Histología de los Tejidos</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="historiaMedicina">
+        <span class="materia-text">Historia de la Medicina</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="medicinaComunidad1">
+        <span class="materia-text">Medicina de la Comunidad</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="inglesMedico">
+        <span class="materia-text">Inglés Médico</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="informaticaMedica">
+        <span class="materia-text">Informática Médica</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="socioantropologia">
+        <span class="materia-text">Socioantropología</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+    </ul>
+  </div>
 
-.semestre h2 {
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
+  <div class="semestre" id="semestre2">
+    <h2>Segundo Semestre</h2>
+    <ul>
+      <li data-id="anatomiaII">
+        <span class="materia-text">Anatomía descriptiva y topográfica II</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="histologiaSistemas">
+        <span class="materia-text">Histología de los Aparatos y Sistemas</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="moduloIntegracionI">
+        <span class="materia-text">Módulo de Integración I</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="biofisica">
+        <span class="materia-text">Biofísica</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="bioquimicaII">
+        <span class="materia-text">Bioquímica II</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="guarani">
+        <span class="materia-text">Guaraní</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="primerosAuxilios">
+        <span class="materia-text">Primeros Auxilios</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+      <li data-id="gestionInformacion">
+        <span class="materia-text">Gestión de la Información</span>
+        <input type="text" class="nota-input" placeholder="Agregar nota" />
+      </li>
+    </ul>
+  </div>
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
+  <script src="script.js"></script>
 
-li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-li:hover {
-  background: #ecf0f1;
-}
-
-li.terminada .materia-text {
-  text-decoration: line-through;
-  color: #27ae60;
-  font-weight: bold;
-}
-
-.nota-input {
-  width: 70px;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #bdc3c7;
-  font-size: 14px;
-  margin-left: 10px;
-}
-
-.nota-input:focus {
-  border-color: #2980b9;
-  outline: none;
-}
+</body>
+</html>
